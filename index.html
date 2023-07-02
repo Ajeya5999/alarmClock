@@ -1,14 +1,17 @@
 <html>
     <head>
         <title>JayJay's Alarm Clock</title>
+        <link rel="stylesheet" href="./index.css">
     </head>
     <body>
 
         <!-- Form to set alarm time -->
 
-        <form>
-            <label for="time">Time</label>
-            <input type="time" id="time" name="time">
+        <form id="alarm-form">
+            <span id="alarm-form-time">
+                <label for="time">Time</label>
+                <input type="time" id="time" name="time">
+            </span>
             <div id="days-container">
                 <span class="day-container">
                     <input type="checkbox" class="day" name="day" value="1"> Monday
@@ -32,8 +35,15 @@
                     <input type="checkbox" class="day" name="day" value="0"> Sunday
                 </span>
             </div>
-            <button type="submit" id="set-alarm">Set Alarm</button>
+            <span id="set-alarm-button">
+                <button type="submit" id="set-alarm">Set Alarm</button>
+            </span>
         </form>
+
+        <!-- List of Created Alarms-->
+
+        <h1> Set Alarms </h1>
+        <div id="alarms-container"></div>
 
         <!-- Scripts -->
 

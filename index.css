@@ -1,0 +1,74 @@
+/* General Properties */
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+div {
+    display: inline-block;
+}
+
+/* Alarm Form */
+
+#alarm-form {
+    margin-top: 20px;
+}
+
+#alarm-form-time {
+    --alarm-form-time-font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: var(--alarm-form-time-font-size);
+    margin-bottom: 20px;
+}
+
+#alarm-form-time > input {
+    font-family: sans-serif;
+    font-size: var(--alarm-form-time-font-size);
+    margin-left: 5%;
+    border: solid black 5px;
+}
+
+/* Days Container */
+
+#days-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+/* Set Alarm Button */
+
+#set-alarm-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#set-alarm {
+    height: 50px;
+    width: 15%;
+    font-size: 1.5rem;
+}
+
+/* Alarms Container */
+
+#alarms-container {
+    width: 100%;
+}
+
+.alarm-container {
+    width: 100%;
+    border: solid black 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.alarm-container-time {
+    font-size: 3rem;
+    margin: 0 10% 0 5%;
+}
