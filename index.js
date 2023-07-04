@@ -2,6 +2,7 @@
 
 const alarmTimes = [];
 const alarmsContainer = document.getElementById('alarms-container');
+let alarmId = 0;
 
 // Alarm Function
 
@@ -27,12 +28,16 @@ const setAlarm = document.getElementById("set-alarm");
 
 // Adding the alarm time
 
+    //Converting 24 hour time to 12 hour time
+
 function time24to12 (timeString24) {
     let hours = timeString24.substring(0, timeString24.indexOf(":"));
     let meridian = (hours >= 12) ? "pm" : "am" ;
     if(hours > 12) hours -= 12;
     return `${hours}:${timeString24.substring(timeString24.indexOf(":") + 1, timeString24.length)} ${meridian}`;
 }
+
+    //Converting Day Number to Day Name
 
 function dayNumberToName (selectedDays) {
     let dayTable = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -41,20 +46,47 @@ function dayNumberToName (selectedDays) {
     return days;
 }
 
+    //Alarm addition function
+
 function addToAlarmList(alarmTime, selectedDays) {
+
+    //Alarm Container Div
+
     let alarmContainer = document.createElement("div");
     alarmContainer.setAttribute('class', 'alarm-container');
+    alarmContainer.setAttribute('id', alarmId);
+
+    //Converting Data to meaningful units
+
     let time = time24to12(alarmTime.value);
     let days = dayNumberToName(selectedDays);
+
+    //Alarm time container
+
     let alarmContainerTime = document.createElement("span");
     alarmContainerTime.setAttribute('class', 'alarm-container-time');
+
+    //Alarm days container
+
     let alarmContainerDays = document.createElement("div");
     alarmContainerDays.setAttribute('class', 'alarm-container-days');
+
+    //Alarm Delete button
+
+    let alarmContainerButton = document.createElement("button");
+    alarmContainerButton.setAttribute('class', 'alarm-container-button');
+    alarmContainerButton.addEventListener('click', deleteAlarm);
+
+    //Adding all the elements to the main "Alarm-Container"
+
     alarmContainerTime.innerText = time;
     alarmContainerDays.innerText = days;
-    alarmContainer.append(alarmContainerTime, alarmContainerDays);
+    alarmContainerButton.innerText = "Delete";
+    alarmContainer.append(alarmContainerTime, alarmContainerDays, alarmContainerButton);
     alarmsContainer.append(alarmContainer);
 }
+
+    //Event listener to add alarm
 
 setAlarm.addEventListener('click', function(event) {
     event.preventDefault();
@@ -65,7 +97,17 @@ setAlarm.addEventListener('click', function(event) {
     alarmTimes.push({
         time: alarmTime.value,
         hasrung: false,
-        days: selectedDays
+        days: selectedDays,
+        alarmId: alarmId
     });
     addToAlarmList(alarmTime, selectedDays);
 });
+
+// Alarm Deletion Function
+
+function deleteAlarm() {
+    let index = alarmTimes.findIndex(timeObject => timeObject.alarmId == this.parentNode.id);
+    alarmTimes.splice(index, 1);
+    let alarmDiv = document.getElementById(this.parentNode.id);
+    alarmDiv.remove();
+}
