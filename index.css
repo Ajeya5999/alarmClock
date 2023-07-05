@@ -39,6 +39,20 @@ div {
     justify-content: space-around;
     width: 100%;
     font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Alarm Sounds Container */
+
+#alarm-sounds-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 3rem;
+}
+
+#alarm-sounds-container > select {
+    font-size: 2rem;
 }
 
 /* Set Alarm Button */

@@ -13,7 +13,11 @@ function ringChecker() {
     let time = alarmTimes.find((timeObject) => timeObject.time === currTime);
     let day = (time != undefined) ? time.days.find((currDay) => date.getDay() == currDay) : false; 
     if(time && !(time.hasrung) && day) {
+        let sound = new Audio(`./assets/sounds/${time.sound}`);
+        sound.loop = true;
+        sound.play();
         alert("Alarm is ringing");
+        sound.pause();
         time.hasrung = true;
     }
 }
@@ -24,6 +28,7 @@ setInterval(ringChecker, 1000);
 
 const alarmTime = document.getElementById("time");
 const days = document.getElementsByClassName("day");
+const alarmSound = document.getElementById('alarm-sounds');
 const setAlarm = document.getElementById("set-alarm");
 
 // Adding the alarm time
@@ -98,6 +103,7 @@ setAlarm.addEventListener('click', function(event) {
         time: alarmTime.value,
         hasrung: false,
         days: selectedDays,
+        sound: alarmSound.value,
         alarmId: alarmId
     });
     addToAlarmList(alarmTime, selectedDays);
