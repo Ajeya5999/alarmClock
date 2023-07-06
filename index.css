@@ -1,6 +1,14 @@
 /* General Properties */
 
+:root {
+    --primary-theme-color: #7196A6;
+    --secondary-theme-color: white;
+    --tertiary-theme-color: #5E5E5E;
+}
+
 body {
+    background-color: var(--primary-theme-color);
+    color: var(--secondary-theme-color);
     padding: 0;
     margin: 0;
     font-family: sans-serif;
@@ -10,14 +18,31 @@ div {
     display: inline-block;
 }
 
+h1 {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.input {
+    background-color: var(--tertiary-theme-color);
+    color: var(--secondary-theme-color);
+}
+
+button {
+    border-width: 0;
+}
+
 /* Alarm Form */
 
 #alarm-form {
-    margin-top: 20px;
+    padding: 20px 0;
+    margin: 10px;
+    border: solid var(--tertiary-theme-color) 5px;
+    box-sizing: border-box;
 }
 
 #alarm-form-time {
-    --alarm-form-time-font-size: 4rem;
+    --alarm-form-time-font-size: 3rem;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -29,7 +54,7 @@ div {
     font-family: sans-serif;
     font-size: var(--alarm-form-time-font-size);
     margin-left: 5%;
-    border: solid black 5px;
+    border: solid var(--tertiary-theme-color) 5px;
 }
 
 /* Days Container */
@@ -53,6 +78,8 @@ div {
 
 #alarm-sounds-container > select {
     font-size: 2rem;
+    margin-left: -10%;
+    border-width: 0;
 }
 
 /* Set Alarm Button */
@@ -77,19 +104,29 @@ div {
 
 .alarm-container {
     position: relative;
-    width: 100%;
-    border: solid black 5px;
-    margin-bottom: 10px;
+    width: 95%;
+    height: 110px;
+    border: solid var(--tertiary-theme-color) 5px;
+    margin: 5px 10px;
     box-sizing: border-box;
 }
 
 .alarm-container-time {
     font-size: 3rem;
-    margin: 0 10% 0 5%;
+    margin: 0 5% 0 5%;
+}
+
+.alarm-sound-name {
+    position: absolute;
+    top: 70px;
+    right: 25%;
+    font-weight: bold;
 }
 
 .alarm-container-button {
     position: absolute;
     top: 25%;
     right: 5%;
+    font-size: 1rem;
+    padding: 1%;
 }
