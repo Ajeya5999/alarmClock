@@ -53,7 +53,7 @@ function dayNumberToName (selectedDays) {
 
     //Alarm addition function
 
-function addToAlarmList(alarmTime, selectedDays, alarmSoundName) {
+function addToAlarmList(alarmTime, selectedDays) {
 
     //Alarm Container Div
 
@@ -76,11 +76,6 @@ function addToAlarmList(alarmTime, selectedDays, alarmSoundName) {
     let alarmContainerDays = document.createElement("div");
     alarmContainerDays.setAttribute('class', 'alarm-container-days');
 
-    //Alarm Sound Name
-
-    let alarmSoundNameContainer = document.createElement("div");
-    alarmSoundNameContainer.setAttribute('class', 'alarm-sound-name');
-
     //Alarm Delete button
 
     let alarmContainerButton = document.createElement("button");
@@ -91,9 +86,8 @@ function addToAlarmList(alarmTime, selectedDays, alarmSoundName) {
 
     alarmContainerTime.innerText = time;
     alarmContainerDays.innerText = days;
-    alarmSoundNameContainer.innerText = `Alarm Sound:- ${alarmSoundName}`;
     alarmContainerButton.innerText = "Delete";
-    alarmContainer.append(alarmContainerTime, alarmContainerDays, alarmSoundNameContainer, alarmContainerButton);
+    alarmContainer.append(alarmContainerTime, alarmContainerDays, alarmContainerButton);
     alarmsContainer.append(alarmContainer);
 }
 
@@ -105,22 +99,14 @@ setAlarm.addEventListener('click', function(event) {
     for(let iterator = 0; iterator < days.length; iterator++) {
         if(days[iterator].checked) selectedDays.push(days[iterator].value);
     }
-    if(alarmTime.value === "") {
-        alert("Please enter a proper time");
-    }
-    else if(selectedDays.length === 0) {
-        alert("Please select atleast one day to set the alarm");
-    }
-    else {
-        alarmTimes.push({
-            time: alarmTime.value,
-            hasrung: false,
-            days: selectedDays,
-            sound: alarmSound.value,
-            alarmId: alarmId
-        });
-        addToAlarmList(alarmTime, selectedDays, alarmSound.options[alarmSound.selectedIndex].text);
-    }
+    alarmTimes.push({
+        time: alarmTime.value,
+        hasrung: false,
+        days: selectedDays,
+        sound: alarmSound.value,
+        alarmId: alarmId
+    });
+    addToAlarmList(alarmTime, selectedDays);
 });
 
 // Alarm Deletion Function
