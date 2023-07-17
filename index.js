@@ -13,7 +13,7 @@ function ringChecker() {
     let time = alarmTimes.find((timeObject) => timeObject.time === currTime);
     let day = (time != undefined) ? time.days.find((currDay) => date.getDay() == currDay) : false; 
     if(time && !(time.hasrung) && day) {
-        let sound = new Audio(`./assets/sounds/${time.sound}?raw=true`);
+        let sound = new Audio(`./assets/sounds/${time.sound}?`);
         sound.loop = true;
         sound.play();
         alert("Alarm is ringing");
