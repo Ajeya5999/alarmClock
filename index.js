@@ -1,3 +1,21 @@
+// 24 hours to 12 hours
+
+function time24to12two(hours, minutes, seconds) {
+    let meridian = (hours < 12) ? "am ": "pm";
+    hours = (hours > 12) ? hours - 12 : hours;
+    let hoursString = (hours < 10) ? "0" + hours : hours, minutesString = (minutes < 10) ? "0" + minutes : minutes, secondsString = (seconds < 10) ? "0" + seconds : seconds;
+    return `${hoursString}:${minutesString}:${secondsString} ${meridian}`;
+}
+
+// IIFE 
+
+((() => {
+    const date = new Date(), hours = date.getHours(), minutes = date.getMinutes(), seconds = date.getSeconds();
+    const hoursString = (hours < 10) ? "0" + hours : hours, minutesString = (minutes < 10) ? "0" + minutes : minutes, secondsString = (seconds < 10) ? "0" + seconds : seconds;
+    const alarmTimeDiv = document.getElementById('alarm-time');
+    alarmTimeDiv.innerText = time24to12two(hours, minutes, seconds);
+}))();
+
 // Alarm Variables
 
 const alarmTimes = [];
@@ -6,10 +24,9 @@ let alarmId = 0;
 
 // Alarm Function
 
-function ringChecker() {
-    const date = new Date(), hours = date.getHours(), minutes = date.getMinutes();
-    let hoursString = (hours < 10) ? "0" + hours : hours, minutesString = (minutes < 10) ? "0" + minutes : minutes;
-    let currTime = `${hoursString}:${minutesString}`;
+    // Alarm Ring Checker
+
+function ringChecker(currTime, date) {
     let time = alarmTimes.find((timeObject) => timeObject.time === currTime);
     let day = (time != undefined) ? time.days.find((currDay) => date.getDay() == currDay) : false; 
     if(time && !(time.hasrung) && day) {
@@ -22,7 +39,15 @@ function ringChecker() {
     }
 }
 
-setInterval(ringChecker, 1000);
+function updateTimer() {
+    const date = new Date(), hours = date.getHours(), minutes = date.getMinutes(), seconds = date.getSeconds();
+    let hoursString = (hours < 10) ? "0" + hours : hours, minutesString = (minutes < 10) ? "0" + minutes : minutes, secondsString = (seconds < 10) ? "0" + seconds : seconds;
+    const alarmTimeDiv = document.getElementById('alarm-time');
+    alarmTimeDiv.innerText = time24to12two(hours, minutes, seconds);
+    if(seconds === 0) ringChecker(`${hoursString}:${minutesString}`, date);
+}
+
+setInterval(updateTimer, 1000);
 
 // Getting the Alarm Time
 
@@ -35,7 +60,7 @@ const setAlarm = document.getElementById("set-alarm");
 
     //Converting 24 hour time to 12 hour time
 
-function time24to12 (timeString24) {
+function time24to12one (timeString24) {
     let hours = timeString24.substring(0, timeString24.indexOf(":"));
     let meridian = (hours >= 12) ? "pm" : "am" ;
     if(hours > 12) hours -= 12;
@@ -63,7 +88,7 @@ function addToAlarmList(alarmTime, selectedDays, alarmSoundName) {
 
     //Converting Data to meaningful units
 
-    let time = time24to12(alarmTime.value);
+    let time = time24to12one(alarmTime.value);
     let days = dayNumberToName(selectedDays);
 
     //Alarm time container

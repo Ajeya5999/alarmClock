@@ -32,6 +32,16 @@ button {
     border-width: 0;
 }
 
+/* Alarm Time Div */
+
+#alarm-time {
+    width: 100%;
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 /* Alarm Form */
 
 #alarm-form {
