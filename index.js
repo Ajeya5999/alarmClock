@@ -61,7 +61,6 @@ const setAlarm = document.getElementById("set-alarm");
     //Converting 24 hour time to 12 hour time
 
 function time24to12one (timeString24) {
-    console.log(timeString24);
     let hours = timeString24.substring(0, timeString24.indexOf(":"));
     let meridian = (hours >= 12) ? "pm" : "am" ;
     if(hours > 12) hours -= 12;
