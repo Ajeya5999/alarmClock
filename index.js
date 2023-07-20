@@ -36,7 +36,6 @@ function ringChecker(currTime, date) {
         sound.play();
         alert("Alarm is ringing");
         sound.pause();
-        time.hasrung = true;
     }
 }
 
@@ -142,12 +141,12 @@ setAlarm.addEventListener('click', function(event) {
     else {
         alarmTimes.push({
             time: alarmTime.value,
-            hasrung: false,
             days: selectedDays,
             sound: alarmSound.value,
             alarmId: alarmId
         });
         addToAlarmList(alarmTime, selectedDays, alarmSound.options[alarmSound.selectedIndex].text);
+        alarmId++;
     }
 });
 
